@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content=" initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/style.css" />
+    <!--JS-->
+    <script defer src="./app/index.js"></script>
+    <!--CSS-->
+    <script defer src="./src/style.css"></script>
+    <!--GOOGLE FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Coiny&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pokédex</title>
+    <!------FAVICON------->
+    <link
+      rel="icon"
+      class="favicon"
+      type="image/x-icon"
+      href="/assets/icons/pokedex.png"
+    />
+  </head>
+  <body>
+    <header>
+      <img class="logo-pokedex" src="./assets/logo.png" alt="Pokedex Logo" />
+      <div class="input-div">
+        <img src="" alt="" />
+        <input
+          class="search"
+          type="search"
+          id="searchPokemon"
+          placeholder="Pokemon name, number or type"
+        />
+        <button class="btn-search" onclick="searchPokemon()">SEARCH</button>
+      </div>
+      <div class="sort-div">
+        <select id="sortOption">
+          <option value="alphabetical">A-Z</option>
+          <option value="type">Type</option>
+          <option value="number">Number</option>
+        </select>
+        <button onclick="sortPokemon()" class="sort-btn">SORT</button>
+      </div>
+    </header>
+    <section>
+      <div class="main-section" id="mainSection">
+        <!---FILLED IN JS--->
+      </div>
+      <button class="btn-back" id="btnBack">CLEAR</button>
+    </section>
+  </body>
+</html>
