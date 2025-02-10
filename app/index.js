@@ -4,7 +4,7 @@ function colorType(pokeCard, pokeType) {
   const typeIcon2 = pokeCard.querySelector(".typeIcon2");
 
   if (typeIcon) {
-    typeIcon.src = `../assets/icons/${pokeType.toUpperCase()}.svg`;
+    typeIcon.src = `https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/${pokeType.toLowerCase()}.svg`;
   }
 
   if (typeIcon2) {
@@ -12,11 +12,11 @@ function colorType(pokeCard, pokeType) {
       ".pokeType:nth-child(4)"
     )?.innerText;
     if (secondType) {
-      typeIcon2.src = `../assets/icons/${secondType.toUpperCase()}.svg`;
+      typeIcon2.src = `https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/${secondType.toLowerCase()}.svg`;
     }
   }
   if (pokeCard) {
-    pokeCard.style.backgroundImage = `url(../assets/${pokeType.toUpperCase()}.svg)`;
+    pokeCard.style.backgroundImage = `url(https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/${pokeType.toUpperCase()}.svg)`;
   }
 }
 /*-------------OVERLAY-----------------*/
@@ -29,31 +29,51 @@ function openOverlay(pokemonData) {
   const weight = (pokemonData.weight / 10).toFixed(1);
   /*------IMGS SEGUN EL TIPO-----*/
   const typeIcons = {
-    grass: "../assets/icons/grass.svg",
-    fire: "../assets/icons/fire.svg",
-    water: "../assets/icons/water.svg",
-    bug: "../assets/icons/bug.svg",
-    normal: "../assets/icons/normal.svg",
-    psychic: "../assets/icons/psychic.svg",
-    poison: "../assets/icons/poison.svg",
-    electric: "../assets/icons/electric.svg",
-    ground: "../assets/icons/ground.svg",
-    fairy: "../assets/icons/fairy.svg",
-    fighting: "../assets/icons/fighting.svg",
-    rock: "../assets/icons/rock.svg",
-    ghost: "../assets/icons/ghost.svg",
-    ice: "../assets/icons/ice.svg",
-    dragon: "../assets/icons/dragon.svg",
-    flying: "../assets/icons/flying.svg",
-    steel: "../assets/icons/steel.svg",
-    dark: "../assets/icons/dark.svg",
+    grass:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/grass.svg",
+    fire: "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/fire.svg",
+    water:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/water.svg",
+    bug: "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/bug.svg",
+    normal:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/normal.svg",
+    psychic:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/psychic.svg",
+    poison:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/poison.svg",
+    electric:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/electric.svg",
+    ground:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/ground.svg",
+    fairy:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/fairy.svg",
+    fighting:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/fighting.svg",
+    rock: "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/rock.svg",
+    ghost:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/ghost.svg",
+    ice: "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/ice.svg",
+    dragon:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/dragon.svg",
+    flying:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/flying.svg",
+    steel:
+      "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/steel.svg",
+    dark: "https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/dark.svg",
   };
-  const type1 = pokemonData.types[0].type.name;
+
+  const type1 = encodeURIComponent(
+    pokemonData.types[0].type.name.trim().toLowerCase()
+  );
   const type2 = pokemonData.types[1] ? pokemonData.types[1].type.name : null;
   const type1Image = typeIcons[type1.toLowerCase()] || "";
   const type2Image = type2 ? typeIcons[type2.toLowerCase()] : null;
 
-  const backgroundImage = `url(../assets/bg/${type1.toUpperCase()}-BG.svg)`;
+  const backgroundImage = `url(https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/BG/${encodeURIComponent(
+    type1
+  )}.svg)`;
+
+  console.log(backgroundImage); // Log the URL to verify it
 
   overlay.style.backgroundImage = backgroundImage;
   overlay.style.backgroundSize = "cover";
@@ -63,10 +83,10 @@ function openOverlay(pokemonData) {
   /*---------OVERLAY----------*/
   overlay.innerHTML = `
   <div class="resultDiv">
-  <button class="btn-close" id="btnBack"><img class="btnClose" src="../assets/x.svg" alt="Close X" /></button>
+  <button class="btn-close" id="btnBack"><img class="btnClose" src="https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/X.svg" alt="Close X" /></button>
     <div class="searchCard">
       <div class="leftDiv">
-        <img class="btnCryOv" style="flex" src="../assets/soundwh.svg" alt="Cry Icon" />
+        <img class="btnCryOv" style="flex" src="https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/soundwh.svg" alt="Cry Icon" />
         <p class="p-info">${pokemonData.name}</p>
         <p class="p-info">#${pokemonData.id}</p>
 
@@ -190,7 +210,8 @@ async function fetchPokemon() {
 function renderPokemonCard(pokemonData, section) {
   /*------BTN PARA REPRODUCIR GRITO--------*/
   const cryImg = document.createElement("img");
-  cryImg.src = "../assets/sound.svg";
+  cryImg.src = `https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/sound.svg`;
+
   cryImg.alt = "Cry Icon";
   cryImg.classList.add("cryIcon");
 
@@ -364,7 +385,7 @@ async function searchPokemon() {
       const pokemonData = await response.json();
 
       const cryImg = document.createElement("img");
-      cryImg.src = "../assets/sound.svg";
+      cryImg.src = `https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/sound.svg`;
       cryImg.alt = "Cry Icon";
       cryImg.classList.add("cryIcon");
 
