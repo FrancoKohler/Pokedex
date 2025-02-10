@@ -332,7 +332,8 @@ header {
 
 .btn-search:before,
 .btn-more:before,
-.btn-back:before {
+.btn-back:before,
+.sort-btn:before {
   background: #fdfdfd;
   content: "";
   position: absolute;
@@ -346,17 +347,42 @@ header {
 
 .btn-search:hover,
 .btn-more:hover,
-.btn-back:hover {
+.btn-back:hover,
+.sort-btn:hover {
   border-radius: 0.5rem;
   color: #fe080a;
 }
 
 .btn-search:hover:before,
 .btn-more:hover:before,
-.btn-back:hover:before {
+.btn-back:hover:before,
+.sort-btn:hover:before {
   width: 100%;
 }
-
+.btn-top {
+  border: 1px solid black;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+  width: 5%;
+  height: fit-content;
+  border-radius: 1.5rem;
+  background-color: red;
+  position: fixed;
+  right: 2%;
+  top: 50%;
+  img {
+    width: 80%;
+  }
+}
+.btn-top:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
 .btnCry,
 .btnCryOv {
   background-color: transparent;
@@ -366,7 +392,6 @@ header {
   text-transform: uppercase;
   font-family: var(--font-family-secondary);
   font-weight: 500;
-
   padding: 1rem 0.5rem 1rem 0.5rem;
   border: none;
   border-radius: 0.5rem;
