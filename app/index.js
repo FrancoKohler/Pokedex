@@ -1,29 +1,7 @@
-/*--------COLOR CARD----------*/
-function colorType(pokeCard, pokeType) {
-  const typeIcon = pokeCard.querySelector(".typeIcon");
-  const typeIcon2 = pokeCard.querySelector(".typeIcon2");
-
-  if (typeIcon) {
-    typeIcon.src = `https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/${pokeType.toLowerCase()}.svg`;
-  }
-
-  if (typeIcon2) {
-    const secondType = pokeCard.querySelector(
-      ".pokeType:nth-child(4)"
-    )?.innerText;
-    if (secondType) {
-      typeIcon2.src = `https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/${secondType.toLowerCase()}.svg`;
-    }
-  }
-  if (pokeCard) {
-    pokeCard.style.backgroundImage = `url(https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/${pokeType.toUpperCase()}.svg)`;
-  }
-}
 /*-------------OVERLAY-----------------*/
 function openOverlay(pokemonData) {
-  const overlay = document.createElement("div");
-  overlay.classList.add("overlay");
-
+  const overlay = document.querySelector(".overlay");
+  overlay.classList.add("show");
   /*------HEIGHT-----*/
   const height = `${pokemonData.height}0`;
   const weight = (pokemonData.weight / 10).toFixed(1);
@@ -68,17 +46,6 @@ function openOverlay(pokemonData) {
   const type2 = pokemonData.types[1] ? pokemonData.types[1].type.name : null;
   const type1Image = typeIcons[type1.toLowerCase()] || "";
   const type2Image = type2 ? typeIcons[type2.toLowerCase()] : null;
-
-  const backgroundImage = `url(https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/BG/${encodeURIComponent(
-    type1
-  )}.svg)`;
-
-  console.log(backgroundImage); // Log the URL to verify it
-
-  overlay.style.backgroundImage = backgroundImage;
-  overlay.style.backgroundSize = "cover";
-  overlay.style.backgroundPosition = "center";
-  overlay.style.backgroundRepeat = "no-repeat";
 
   /*---------OVERLAY----------*/
   overlay.innerHTML = `
@@ -169,20 +136,20 @@ function openOverlay(pokemonData) {
   });
   window.addEventListener("click", function (event) {
     if (event.target === overlay) {
-      overlay.style.display = "none";
+      overlay.classList.remove("show");
     }
   });
   document.body.appendChild(overlay);
 
   /*-----------CIERRE DEL OVERLAY AL APRETAR "X"----------*/
   overlay.querySelector(".btn-close").addEventListener("click", () => {
-    overlay.style.display = "none";
+    overlay.classList.remove("show");
   });
 
   /*-----------CIERRE DEL MODAL AL APRETAR FUERA----------*/
   window.addEventListener("click", (event) => {
     if (event.target === overlay) {
-      overlay.style.display = "none";
+      overlay.classList.remove("show");
     }
   });
 }
@@ -445,7 +412,30 @@ async function searchPokemon() {
     }
   }
 }
+/*--------COLOR CARD----------*/
+function colorType(pokeCard, pokeType, overlay) {
+  const typeIcon = pokeCard.querySelector(".typeIcon");
+  const typeIcon2 = pokeCard.querySelector(".typeIcon2");
 
+  if (typeIcon) {
+    typeIcon.src = `https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/${pokeType.toLowerCase()}.svg`;
+  }
+
+  if (typeIcon2) {
+    const secondType = pokeCard.querySelector(
+      ".pokeType:nth-child(4)"
+    )?.innerText;
+    if (secondType) {
+      typeIcon2.src = `https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/icons/${secondType.toLowerCase()}.svg`;
+    }
+  }
+  if (pokeCard) {
+    pokeCard.style.backgroundImage = `url(https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/${pokeType.toUpperCase()}.svg)`;
+  }
+  if (pokeCard) {
+    pokeCard.style.backgroundImage = `url(https://raw.githubusercontent.com/FrancoKohler/Pokedex/master/assets/${pokeType.toUpperCase()}.svg)`;
+  }
+}
 /*--------EVENT KEY PARA USO DE TECLA-------*/
 document
   .getElementById("searchPokemon")
